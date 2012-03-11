@@ -9,40 +9,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-}%
+%}
 
 
 
-keyword				end|return|goto|if|then|var|not|and
-lexeme				"\"|"("|")"|","|":"|"="|"*"|"-"|"+"|"=<"|"#"
+keyword			end|return|goto|if|then|var|not|and
+lexeme			";"|"("|")"|","|":"|"="|"*"|"-"|"+"|"=<"|"#"
 
 identifier		[a-zA-Z_][0-9a-zA-Z_]*
-decimal				&[0-9]+
+decimal			&[0-9]+
 hexadecimal		[0-9][0-9A-Fa-f]*
 whitespace		[\t\r\n ]
-comment				"(*".*"*)"
+comment			"(*".*"*)"
 
-%%
 
 /*** Rules section ***/
+%%
+{comment}		;
 
+{keyword}[0-9a-zA-Z]+	printf("ident %s\n",yytext);
+{keyword}		printf("%s\n",yytext);
+{lexeme}		printf("%s\n",yytext);
+{identifier}		printf("ident %s\n",yytext);
+{decimal}		printf("num %lu\n", str_to_num(DECIMAL,yytext));
+{hexadecimal}		printf("num %lu\n", str_to_num(HEXADECIMAL,yytext));
 
-{comment} 						;
-
-/*** treat keywords, followed by alphanumerical symbols as identifier ***/
-{keyword}[0-9a-zA-Z]+	print("ident %s\n",yytext);
-{keyword}							print("%s\n",yytext);
-{lexeme}							print("%s\n",yytext);
-{identifier}					print("ident %s\n",yytext);
-{decimal}							print("num %lu\n", str_to_num(DECIMAL,yytext));
-{hexadecimal}					print("num %lu\n", str_to_num(HEXADECIMAL,yytext));
-
-{whitespace}+					;
-
-.+										{
-												print("ERROR: unrecognized token: %s\n", yytext);
-												exit(1);
-											};
+{whitespace}+		;
+.+			{
+				printf("ERROR: unrecognized token: %s\n", yytext);
+				exit(1);
+			}
 
 %%
 /*** C-Code section ***/
@@ -61,3 +57,4 @@ int str_to_num(int base, char *str){
 	}
 	return strtoul(str,NULL,base);
 }
+
