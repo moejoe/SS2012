@@ -10,8 +10,8 @@ asma.o: asma.s
 	$(CC) -c $<
 
 # Generiert ein Assemble template 
-template:
-	$(CC) -O -S asma_template.c
+#template:
+#	$(CC) -O -S asma_template.c
 
 # Erzeugt die Abgabe
 abgabe: 
@@ -27,7 +27,7 @@ vutest: abgabe
 
 # Meine Tests
 asma-test: asma.o
-	$(CC) $(CFLAGS) -o asma-test test-main.c $(LDFLAGS)
+	$(CC) $(CFLAGS) -o asma-test test-main.c asma.o $(LDFLAGS)
 
 test: asma-test
 

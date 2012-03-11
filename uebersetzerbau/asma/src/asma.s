@@ -1,10 +1,14 @@
-	.file	"asma_template.c"
+	.file	"asma.s"
 	.text
 .globl asma
 	.type	asma, @function
 asma:
 .LFB2:
+	movq	8(%rdi), %rdx
+	shlq	$63,%rdx
 	shrq	(%rdi)
+	addq	%rdx, (%rdi)	
+	shrq	8(%rdi)
 	ret
 .LFE2:
 	.size	asma, .-asma

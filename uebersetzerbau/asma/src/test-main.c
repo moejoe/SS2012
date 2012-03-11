@@ -14,6 +14,11 @@ void asma_ref(unsigned long x[])
 
 int test(unsigned long x[])
 {
+  printf("\nInput Stelle 1 Wert:  %016lx\n",x[0]);
+  printf("\nInput Stelle 2 Wert:  %016lx\n",x[1]);
+  asma(x);
+  printf("\nOutput Stelle 1 Wert: %016lx\n",x[0]);
+  printf("\nOutput Stelle 2 Wert: %016lx\n",x[1]);
   return 0;
 }
   
