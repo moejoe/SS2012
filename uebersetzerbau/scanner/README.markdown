@@ -10,26 +10,27 @@ Schreiben Sie mit flex einen Scanner, der Identifier, Zahlen, und folgende
 Schlüsselwörter unterscheiden kann: 
 
 * `end`
-* return 
-* goto 
-* if 
-* then 
-* var 
-* not 
-* and
+* `return`
+* `goto` 
+* `if`
+* `then` 
+* `var` 
+* `not` 
+* `and`
 
 Weiters soll er auch noch folgende Lexeme erkennen: 
-*	; 
-*	( 
-*	) 
-*	, 
-*	: 
-*	= 
-*	\* 
-* - 
-* +
-* =< 
-* # 
+
+*	`;`
+*	`(` 
+*	`)` 
+*	`,` 
+*	`:` 
+*	`=` 
+*	`*`
+* `-` 
+* `+`
+* `=<` 
+* `#` 
 
 Identifier bestehen aus Buchstaben, Ziffern und _, dürfen aber nicht mit Ziffern 
 beginnen. Zahlen sind entweder Hexadezimalzahlen oder Dezimalzahlen. 
