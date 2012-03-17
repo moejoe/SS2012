@@ -3,7 +3,7 @@
 /*** Define different kinds of numbers ***/
 %{
 
-#define DECIMAL				10
+#define DECIMAL			10
 #define HEXADECIMAL		16
 
 #include <stdio.h>
@@ -35,7 +35,8 @@ comment			"(*".*"*)"
 {hexadecimal}		printf("num %lu\n", str_to_num(HEXADECIMAL,yytext));
 
 {whitespace}+		;
-.+			{
+
+.			{
 				printf("ERROR: unrecognized token: %s\n", yytext);
 				exit(1);
 			}

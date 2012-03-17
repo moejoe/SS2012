@@ -17,7 +17,7 @@ asma.o: asma.s
 abgabe: 
 	mkdir -p $(OUTDIR)
 	cp asma.s $(OUTDIR)
-	cp Makefile $(OUTDIR)
+	cp Makefile.abgabe $(OUTDIR)/Makefile
 
 # VU Test
 vutest: abgabe

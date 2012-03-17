@@ -1,0 +1,12 @@
+CC	= /usr/bin/gcc
+CFLAGS  = 
+LDFLAGS = 
+
+
+asma.o: asma.s
+	$(CC) -c $<
+
+clean: 
+	rm -rf asma.o o
+
+.PHONY: clean
