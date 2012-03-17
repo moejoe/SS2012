@@ -13,7 +13,7 @@ asmb.o: asmb.s
 abgabe: 
 	mkdir -p $(OUTDIR)
 	cp asmb.s $(OUTDIR)
-	cp Makefile $(OUTDIR)
+	cp Makefile.abgabe $(OUTDIR)/Makefile
 
 # VU Test
 vutest: abgabe

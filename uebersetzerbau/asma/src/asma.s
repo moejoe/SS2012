@@ -4,11 +4,9 @@
 	.type	asma, @function
 asma:
 .LFB2:
-	movq	8(%rdi), %rdx
-	shlq	$63,%rdx
-	shrq	(%rdi)
-	addq	%rdx, (%rdi)	
-	shrq	8(%rdi)
+	clc
+	rcrq	8(%rdi)
+	rcrq	(%rdi)
 	ret
 .LFE2:
 	.size	asma, .-asma

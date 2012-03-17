@@ -13,20 +13,12 @@ asmb:
 	movq	%rsi, %rcx
 	
 	# set carry to 0
-	movq 	$0, %r9
+	clc
 for_loop:
 	# set pointer r11 to next x
 	leaq	-8(%r11), %r11
-	
-	# next_carry berechnen
-	movq 	(%r11), %r10
-	shlq	$63, %r10
-	# carry mit x kombinieren
-	shrq	(%r11)
-	addq	%r9,( %r11)
-	# carry = next_carry
-	movq	%r10, %r9
-
+	# rotate through carry 	
+	rcrq 	(%r11)
 	loop	for_loop
 exit:
 	ret

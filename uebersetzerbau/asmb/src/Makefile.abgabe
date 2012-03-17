@@ -3,10 +3,10 @@ CFLAGS  =
 LDFLAGS = 
 
 
-asma.o: asma.s
+asma.o: asmb.s
 	$(CC) -c $<
 
 clean: 
-	rm -rf asma.o 
+	rm -rf asmb.o
 
 .PHONY: clean
