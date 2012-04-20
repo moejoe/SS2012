@@ -13,6 +13,12 @@ Content
 * scanner - Lex - [Angabe] - 7.3
 
 
+Sonstiges
+=========
 
+SSH Zugang
+----------
+
+g0.complang.tuwien.ac.at
 
 [Angabe]: http://www.complang.tuwien.ac.at/ubvl/skriptum/skriptum12.html
