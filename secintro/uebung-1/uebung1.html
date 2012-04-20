@@ -1,0 +1,629 @@
+<head>
+<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'><style type='text/css'>/* 
+   This document has been created with Marked.app <http://markedapp.com>, Copyright 2011 Brett Terpstra
+   Please leave this notice in place, along with any additional credits below.
+   ---------------------------------------------------------------
+   Some simple Github-like styles, with syntax highlighting CSS via Pygments (requires custom processor).
+   via https://github.com/alampros/Docter
+*/
+html {
+    margin:0;
+    padding:1em;
+}
+body{
+    -webkit-font-smoothing: antialiased;
+    font: 13.34px helvetica,arial,freesans,clean,sans-serif;
+    line-height: 1.4em;
+    color: #333;
+    border: none;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 900px; 
+    text-align:left;
+    color:black;
+    background:#fff;
+}
+
+img {max-width:100%}
+
+@media screen {
+    #wrapper { padding:9px; background:#F8F8F8; border:1px solid #E9E9E9;}    
+    body.inverted, .inverted #wrapper {
+        color: #eee;
+        background:#333;
+        border-color:#555
+    }
+    .inverted h2 {
+        border-color:#555
+    }
+    .inverted hr {
+        border-color: #777;
+        border-width: 1px !important;
+    }
+}
+h1 {
+    font-size: 170%;
+    border-top: 4px solid #aaa;
+    padding-top: .5em;
+    margin-top: 1.5em;
+}
+
+h1:first-child {
+    margin-top: 0 !important;
+    padding-top: .25em !important;
+    border-top: none !important;
+}
+
+h2 {
+    font-size: 150%;
+    margin-top: 1.5em;
+    border-top: 4px solid #e0e0e0;
+    padding-top: .5em;
+}
+
+h3 {
+    margin-top: 1em;
+}
+
+p {
+    margin: 1em 0!important;
+    line-height: 1.5em!important;
+}
+
+pre, code {
+    font: 12px 'Bitstream Vera Sans Mono','Courier',monospace;
+}
+pre {
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0664062) 0px 1px 2px 0px inset;
+    background-color: #EEE;
+    border: #ddd 1px solid;
+    color: #444;
+    display: block;
+    margin: 12px 0;
+    overflow: auto;
+    padding: 5px;
+    white-space: pre;
+    max-width:100%;
+    overflow:auto;
+}
+code {
+    background-color: ghostWhite;
+    color: #444!important;
+    padding: 0 .2em;
+    border: 1px solid #DEDEDE;
+}
+pre code {
+    padding: 0!important;
+    font-size: 12px!important;
+    background-color: #EEE!important;
+    border: none!important;
+    overflow:visible;
+}
+a, a code {
+    color: #4183C4;
+    text-decoration:none;
+}
+
+table td {
+    border-bottom: 1px solid #DDD!important;
+    padding: .2em 1em!important;
+}
+
+.shadow{
+    -webkit-box-shadow:0 5px 15px #000;
+    -moz-box-shadow:0 5px 15px #000;
+    box-shadow:0 5px 15px #000;     
+}
+
+
+.c{color:#998;font-style:italic;}
+.err{color:#a61717;background-color:#e3d2d2;}
+.k{font-weight:bold;}
+.o{font-weight:bold;}
+.cm{color:#998;font-style:italic;}
+.cp{color:#999;font-weight:bold;}
+.c1{color:#998;font-style:italic;}
+.cs{color:#999;font-weight:bold;font-style:italic;}
+.gd{color:#000;background-color:#fdd;}
+.gd .x{color:#000;background-color:#faa;}
+.ge{font-style:italic;}
+.gr{color:#a00;}
+.gh{color:#999;}
+.gi{color:#000;background-color:#dfd;}
+.gi .x{color:#000;background-color:#afa;}
+.go{color:#888;}
+.gp{color:#555;}
+.gs{font-weight:bold;}
+.gu{color:#800080;font-weight:bold;}
+.gt{color:#a00;}
+.kc{font-weight:bold;}
+.kd{font-weight:bold;}
+.kn{font-weight:bold;}
+.kp{font-weight:bold;}
+.kr{font-weight:bold;}
+.kt{color:#458;font-weight:bold;}
+.m{color:#099;}
+.s{color:#d14;}
+.na{color:#008080;}
+.nb{color:#0086B3;}
+.nc{color:#458;font-weight:bold;}
+.no{color:#008080;}
+.ni{color:#800080;}
+.ne{color:#900;font-weight:bold;}
+.nf{color:#900;font-weight:bold;}
+.nn{color:#555;}
+.nt{color:#000080;}
+.nv{color:#008080;}
+.ow{font-weight:bold;}
+.w{color:#bbb;}
+.mf{color:#099;}
+.mh{color:#099;}
+.mi{color:#099;}
+.mo{color:#099;}
+.sb{color:#d14;}
+.sc{color:#d14;}
+.sd{color:#d14;}
+.s2{color:#d14;}
+.se{color:#d14;}
+.sh{color:#d14;}
+.si{color:#d14;}
+.sx{color:#d14;}
+.sr{color:#009926;}
+.s1{color:#d14;}
+.ss{color:#990073;}
+.bp{color:#999;}
+.vc{color:#008080;}
+.vg{color:#008080;}
+.vi{color:#008080;}
+.il{color:#099;}
+
+.poetry pre {
+    font-family:Georgia, Garamond, serif !important;
+    font-style:italic;
+    font-size:110% !important;
+    line-height:1.6em;
+    display:block;
+    margin-left:1em;
+}
+
+.poetry pre code {
+    font-family:Georgia, Garamond, serif !important;
+}
+
+sup,sub,a.footnote {
+    font-size: 1.4ex;
+    height: 0;
+    line-height: 1;
+    vertical-align: super;
+    position: relative;
+}
+sub {
+    vertical-align: sub;
+    top: -1px;
+}
+
+@media print {
+    body {
+        background:#fff;
+    }
+    img, pre, blockquote, table, figure {
+        page-break-inside: avoid
+    }
+    .footnotes { page-break-before: always }
+    #wrapper {
+        background: #fff;
+        border:none;
+    }
+    code {
+        background-color: #fff;
+        color: #444!important;
+        padding: 0 .2em;
+        border: 1px solid #DEDEDE;
+    }
+    pre code {
+        background-color: #fff!important;
+        overflow:visible;
+    }
+    pre {
+        background: #fff;
+    }
+}
+</style></head>
+<body class="normal">
+<div class="wrapper">
+<h1>Caesars wordsalad  </h1>
+
+<p><strong>Frequency Analsysis as basic idea</strong>:
+If every input symbol s in the cypher is mapped to a fixed output symbol<br>
+c(s), the propability p(s) of s occuring in any given message of the language<br>
+should correlate to the propability p(c(s)) occuring in ceasars message.</p>
+
+<h2>Step 1  </h2>
+
+<p>Find the propability of any given english letter occuring in a english message:</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Letter_frequency">http://en.wikipedia.org/wiki/Letter_frequency</a></p>
+
+<h2>Step 2  </h2>
+
+<p>I wrote a perl script, that counts the occurance of a symbol in a message, and<br>
+prints the letter, count, and propability of that symbol to stdout.</p>
+
+<pre><code class="perl">#!/bin/perl -w 
+
+my %seen = ();  
+my $total = 0;
+
+while( &lt;STDIN&gt; ){  
+    while ($_ =~ /(.)/g) {
+    $seen{$1}++;
+    $total++;
+    }
+}
+
+print &quot;symbol | frequency | probability\n&quot;;  
+print &quot;-------|-----------|------------\n&quot;;  
+foreach my $symbol (keys(%seen)) {  
+    print pack(&quot;A6&quot;,$symbol) . &quot; | &quot; .  pack(&quot;A9&quot;, $seen{$symbol} ) . &quot; | &quot; .  (100.00 * $seen{$symbol}/$total) . &quot;\n&quot;;
+}
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<table><thead>
+<tr>
+<td>symbol</td>
+<td>frequency</td>
+<td>probability</td>
+</tr>
+</thead><tbody>
+<tr>
+<td>w</td>
+<td>5</td>
+<td>0.3424</td>
+</tr>
+<tr>
+<td>a</td>
+<td>153</td>
+<td>10.4794</td>
+</tr>
+<tr>
+<td>r</td>
+<td>42</td>
+<td>2.8767</td>
+</tr>
+<tr>
+<td>:</td>
+<td>1</td>
+<td>0.0684</td>
+</tr>
+<tr>
+<td>d</td>
+<td>24</td>
+<td>1.6438</td>
+</tr>
+<tr>
+<td>,</td>
+<td>24</td>
+<td>1.6438</td>
+</tr>
+<tr>
+<td>x</td>
+<td>75</td>
+<td>5.1369</td>
+</tr>
+<tr>
+<td>j</td>
+<td>2</td>
+<td>0.1369</td>
+</tr>
+<tr>
+<td>y</td>
+<td>83</td>
+<td>5.6849</td>
+</tr>
+<tr>
+<td>u</td>
+<td>1</td>
+<td>0.0684</td>
+</tr>
+<tr>
+<td>h</td>
+<td>26</td>
+<td>1.7808</td>
+</tr>
+<tr>
+<td>k</td>
+<td>18</td>
+<td>1.2328</td>
+</tr>
+<tr>
+<td>g</td>
+<td>38</td>
+<td>2.6027</td>
+</tr>
+<tr>
+<td>.</td>
+<td>5</td>
+<td>0.3424</td>
+</tr>
+<tr>
+<td>;</td>
+<td>3</td>
+<td>0.2054</td>
+</tr>
+<tr>
+<td>f</td>
+<td>89</td>
+<td>6.0958</td>
+</tr>
+<tr>
+<td>t</td>
+<td>30</td>
+<td>2.0547</td>
+</tr>
+<tr>
+<td>i</td>
+<td>85</td>
+<td>5.8219</td>
+</tr>
+<tr>
+<td>e</td>
+<td>29</td>
+<td>1.9863</td>
+</tr>
+<tr>
+<td>n</td>
+<td>21</td>
+<td>1.4383</td>
+</tr>
+<tr>
+<td></td>
+<td>252</td>
+<td>17.260</td>
+</tr>
+<tr>
+<td>m</td>
+<td>63</td>
+<td>4.3150</td>
+</tr>
+<tr>
+<td>v</td>
+<td>26</td>
+<td>1.7808</td>
+</tr>
+<tr>
+<td>s</td>
+<td>50</td>
+<td>3.4246</td>
+</tr>
+<tr>
+<td>l</td>
+<td>106</td>
+<td>7.2602</td>
+</tr>
+<tr>
+<td>c</td>
+<td>71</td>
+<td>4.8630</td>
+</tr>
+<tr>
+<td>b</td>
+<td>12</td>
+<td>0.8219</td>
+</tr>
+<tr>
+<td>q</td>
+<td>15</td>
+<td>1.0273</td>
+</tr>
+<tr>
+<td>z</td>
+<td>1</td>
+<td>0.0684</td>
+</tr>
+<tr>
+<td>o</td>
+<td>110</td>
+<td>7.5342</td>
+</tr>
+</tbody></table>
+<p>The &quot; &quot; (blank) is  the most frequent symbol. I guessed that it is, in fact<br>
+the blank symbol in the message.</p>
+
+<p>The next most frequent symbol is &quot;a&quot; - if the message is indeed in english,<br>
+and the frequencies are not that disturbed, that could correspond to &quot;e&quot;<br>
+in the message.</p>
+
+<h2>Step 3 - naive substitution  </h2>
+
+<p>I created a simple map, where i assigned each symbol in my table the symbol<br>
+of the english language frequency table, that had the same rank.</p>
+
+<p>The resulting map was:</p>
+
+<pre><code class="perl">#!/bin/perl -w
+%map = (
+&quot; &quot; =&gt; &quot; &quot;,
+&quot;a&quot; =&gt; &quot;E&quot;,
+&quot;o&quot; =&gt; &quot;T&quot;,
+&quot;l&quot; =&gt; &quot;A&quot;,
+&quot;f&quot; =&gt; &quot;O&quot;,
+&quot;i&quot; =&gt; &quot;I&quot;,
+&quot;y&quot; =&gt; &quot;N&quot;,
+&quot;x&quot; =&gt; &quot;S&quot;,
+&quot;c&quot; =&gt; &quot;R&quot;,
+&quot;m&quot; =&gt; &quot;H&quot;,
+&quot;s&quot; =&gt; &quot;D&quot;,
+&quot;r&quot; =&gt; &quot;L&quot;,
+&quot;g&quot; =&gt; &quot;U&quot;,
+&quot;t&quot; =&gt; &quot;C&quot;,
+&quot;e&quot; =&gt; &quot;M&quot;,
+&quot;h&quot; =&gt; &quot;F&quot;,
+&quot;v&quot; =&gt; &quot;Y&quot;,
+&quot;d&quot; =&gt; &quot;W&quot;,
+&quot;,&quot; =&gt; &quot;G&quot;,
+&quot;n&quot; =&gt; &quot;P&quot;,
+&quot;k&quot; =&gt; &quot;B&quot;,
+&quot;q&quot; =&gt; &quot;V&quot;,
+&quot;b&quot; =&gt; &quot;K&quot;,
+&quot;w&quot; =&gt; &quot;X&quot; );
+
+while( &lt;STDIN&gt; ){  
+    while ($_ =~ /(.)/g) {
+    if( exists($map{$1}) ){
+        print $map{$1};     
+    }
+    else {
+        print &quot;#&quot;;
+    }
+    }
+    print &quot;\n&quot;;
+}
+</code></pre>
+
+<p>using that maping, the message transformed into:</p>
+
+<p>LAEHASG NAPIOC DEUAYED TVR DAYH IO TNAT KUALEG BELAFHE NE NAD AOTILIKATED TNATG IO TNE OATFSAU LRFSHE RM EPEOTHG HFLN VRFUD BE TNE LRODFLT RM PESLIOCETRSIXG UEAPEH TNE ASWY FODES KSETEOHE RM SAIHIOC SELSFITH AOD LAPAUSY# NE KUALEH BSFTFHG A YRFOC WAOG IO LRWWAOD RM TNEHE MRSLEH# NE CIPEH NIW IOHTSFLTIROH TNAT TNE LAPAUSY HNRFUDSAOCE AH EXTEOHIPEUY AH KRHHIBUE IO AUU DISELTIROH# TNAT NE VRFUD EXEST NIWHEUM ORT TR BE ABHEOT MSRW TNE LAWK UROCES TNAO TNSEE DAYH# NAPIOC ASSAOCED TNEHE WATTESHG NE WASLNEH TR PIEOOA BY AH UROC #RFSOEYH AH NE LAOG VNEO NIH RVO HRUDIESH DID ORT EXKELT NIW# MIODIOC TNESE A MSEHN BRDY RM LAPAUSYG VNILN NE NAD HEOT RO TR TNAT KUALE HEPESAU DAYH BEMRSEG WASLNIOC IOLEHHAOTUY OICNT AOD DAYG NE ADPAOLED SAKIDUY TNSRFCN TNE TESSITRSY RM TNEAEDFI IOTR TNAT RM TNE UIOCROEHG IO VNILN TVR UECIROH VESE VIOTESIOCG TNATG IM AOY KUAO AMMELTIOC NIH RVO HAMETY HNRFUD NAPE BEEO RSCAOI#ED BY TNE AEDFIG NE WICNT DEMEAT IT BY TNE SAKIDITY RM NIH WRPEWEOTH# VNEO NE ASSIPED TNESEG NE HEODH IOMRSWATIRO TR TNE SEHT RM TNE UECIROHG AOD CATNESH AUU NIH ASWY IOTR ROE KUALE BEMRSE IOTEUUICEOLE RM NIH ASSIPAU LRFUD BE AOORFOLED TR TNE ASPESOI# PESLIOCETRSIXG RO NEASIOC TNIH LISLFWHTAOLEG UEADHBAL# NIH ASWY IOTR TNE LRFOTSY RM TNE BITFSICEH# AOD AMTES WASLNIOC MSRW IT TR CESCRPIAG A TRVO RM TNE BRIIG VNRW LAEHAS NAD HETTUED TNESE AMTES DEMEATIOC TNEW IO TNE NEUPETIAO VASG AOD NAD SEODESED TSIBFTASY TR TNE AEDFIG NE DETESWIOED TR ATTAL# IT#</p>
+
+<h2>Step 4 - Tweaking the table   </h2>
+
+<h3>Iteration 1</h3>
+
+<p>I couldnt yet read the text, but some familiar patterns emerged. </p>
+
+<p>The string &quot;TNE&quot; for example was repeated often, and could very well be &quot;THE&quot;.<br>
+So i tried swapping N and H in my map.</p>
+
+<p>The resulting text was ... astonishingly promising:</p>
+
+<p><em>LAENASG HAPIOC DEUAYED TVR DAYN IO THAT KUALEG BELAFNE HE HAD AOTILIKATED THATG IO THE OATFSAU LRFSNE RM EPEOTNG NFLH VRFUD BE THE LRODFLT RM PESLIOCETRSIXG UEAPEN THE ASWY FODES KSETEONE RM SAINIOC SELSFITN AOD LAPAUSY# HE KUALEN BSFTFNG A YRFOC WAOG IO LRWWAOD RM THENE MRSLEN# HE CIPEN HIW IONTSFLTIRON THAT THE LAPAUSY NHRFUD SAOCE AN EXTEONIPEUY AN KRNNIBUE IO AUU DISELTIRON# THAT HE VRFUD EXEST HIWNEUM ORT TR BE ABNEOT MSRW THE LAWK UROCES THAO THSEE DAYN# HAPIOC ASSAOCED THENE WATTESNG HE WASLHEN TR PIEOOA BY AN UROC #RFSOEYN AN HE LAOG VHEO HIN RVO NRUDIESN DID ORT EXKELT HIW# MIODIOC THESE A MSENH BRDY RM LAPAUSYG VHILH HE HAD NEOT RO TR THAT KUALE NEPESAU DAYN BEMRSEG WASLHIOC IOLENNAOTUY OICHT AOD DAYG HE ADPAOLED SAKIDUY THSRFCH THE TESSITRSY RM THE AEDFI IOTR THAT RM THE UIOCROENG IO VHILH TVR UECIRON VESE VIOTESIOCG THATG IM AOY KUAO AMMELTIOC HIN RVO NAMETY NHRFUD HAPE BEEO RSCAOI#ED BY THE AEDFIG HE WICHT DEMEAT IT BY THE SAKIDITY RM HIN WRPEWEOTN# VHEO HE ASSIPED THESEG HE NEODN IOMRSWATIRO TR THE SENT RM THE UECIRONG AOD CATHESN AUU HIN ASWY IOTR ROE KUALE BEMRSE IOTEUUICEOLE RM HIN ASSIPAU LRFUD BE AOORFOLED TR THE ASPESOI# PESLIOCETRSIXG RO HEASIOC THIN LISLFWNTAOLEG UEADN BAL# HIN ASWY IOTR THE LRFOTSY RM THE BITFSICEN# AOD AMTES WASLHIOC MSRW IT TR CESCRPIAG A TRVO RM THE BRIIG VHRW LAENAS HAD NETTUED THESE AMTES DEMEATIOC THEW IO THE HEUPETIAO VASG AOD HAD SEODESED TSIBFTASY TR THE AEDFIG HE DETESWIOED TR ATTAL# IT#</em></p>
+
+<h3>Iteration 2</h3>
+
+<p>Some words THAT, THE, BE ... looked good, others where nearly correct.</p>
+
+<p>&quot;IO&quot; could be &quot;IS&quot; and DEUAYED could be DELAYED</p>
+
+<p>swapping N for S and U to L i got:</p>
+
+<p><em>UAESANG HAPIOC DELAYED TVR DAYS IO THAT KLAUEG BEUAFSE HE HAD AOTIUIKATED THATG IO THE OATFNAL URFNSE RM EPEOTSG SFUH VRFLD BE THE URODFUT RM PENUIOCETRNIXG LEAPES THE ANWY FODEN KNETEOSE RM NAISIOC NEUNFITS AOD UAPALNY# HE KLAUES BNFTFSG A YRFOC WAOG IO URWWAOD RM THESE MRNUES# HE CIPES HIW IOSTNFUTIROS THAT THE UAPALNY SHRFLD NAOCE AS EXTEOSIPELY AS KRSSIBLE IO ALL DINEUTIROS# THAT HE VRFLD EXENT HIWSELM ORT TR BE ABSEOT MNRW THE UAWK LROCEN THAO THNEE DAYS# HAPIOC ANNAOCED THESE WATTENSG HE WANUHES TR PIEOOA BY AS LROC #RFNOEYS AS HE UAOG VHEO HIS RVO SRLDIENS DID ORT EXKEUT HIW# MIODIOC THENE A MNESH BRDY RM UAPALNYG VHIUH HE HAD SEOT RO TR THAT KLAUE SEPENAL DAYS BEMRNEG WANUHIOC IOUESSAOTLY OICHT AOD DAYG HE ADPAOUED NAKIDLY THNRFCH THE TENNITRNY RM THE AEDFI IOTR THAT RM THE LIOCROESG IO VHIUH TVR LECIROS VENE VIOTENIOCG THATG IM AOY KLAO AMMEUTIOC HIS RVO SAMETY SHRFLD HAPE BEEO RNCAOI#ED BY THE AEDFIG HE WICHT DEMEAT IT BY THE NAKIDITY RM HIS WRPEWEOTS# VHEO HE ANNIPED THENEG HE SEODS IOMRNWATIRO TR THE NEST RM THE LECIROSG AOD CATHENS ALL HIS ANWY IOTR ROE KLAUE BEMRNE IOTELLICEOUE RM HIS ANNIPAL URFLD BE AOORFOUED TR THE ANPENOI# PENUIOCETRNIXG RO HEANIOC THIS UINUFWSTAOUEG LEADS BAU# HIS ANWY IOTR THE URFOTNY RM THE BITFNICES# AOD AMTEN WANUHIOC MNRW IT TR CENCRPIAG A TRVO RM THE BRIIG VHRW UAESAN HAD SETTLED THENE AMTEN DEMEATIOC THEW IO THE HELPETIAO VANG AOD HAD NEODENED TNIBFTANY TR THE AEDFIG HE DETENWIOED TR ATTAU# IT#</em></p>
+
+<h3>Iteration 3</h3>
+
+<p>still not perfect, but more combinations emerged: </p>
+
+<p>KRSSIBLE could very well mean &quot;POSSIBLE&quot; making K&lt;-&gt;P and R&lt;-&gt;O my next choice<br>
+yielding:</p>
+
+<p><em>UAESANG HAKIRC DELAYED TVO DAYS IR THAT PLAUEG BEUAFSE HE HAD ARTIUIPATED THATG IR THE RATFNAL UOFNSE OM EKERTSG SFUH VOFLD BE THE UORDFUT OM KENUIRCETONIXG LEAKES THE ANWY FRDEN PNETERSE OM NAISIRC NEUNFITS ARD UAKALNY# HE PLAUES BNFTFSG A YOFRC WARG IR UOWWARD OM THESE MONUES# HE CIKES HIW IRSTNFUTIORS THAT THE UAKALNY SHOFLD NARCE AS EXTERSIKELY AS POSSIBLE IR ALL DINEUTIORS# THAT HE VOFLD EXENT HIWSELM ROT TO BE ABSERT MNOW THE UAWP LORCEN THAR THNEE DAYS# HAKIRC ANNARCED THESE WATTENSG HE WANUHES TO KIERRA BY AS LORC #OFNREYS AS HE UARG VHER HIS OVR SOLDIENS DID ROT EXPEUT HIW# MIRDIRC THENE A MNESH BODY OM UAKALNYG VHIUH HE HAD SERT OR TO THAT PLAUE SEKENAL DAYS BEMONEG WANUHIRC IRUESSARTLY RICHT ARD DAYG HE ADKARUED NAPIDLY THNOFCH THE TENNITONY OM THE AEDFI IRTO THAT OM THE LIRCORESG IR VHIUH TVO LECIORS VENE VIRTENIRCG THATG IM ARY PLAR AMMEUTIRC HIS OVR SAMETY SHOFLD HAKE BEER ONCARI#ED BY THE AEDFIG HE WICHT DEMEAT IT BY THE NAPIDITY OM HIS WOKEWERTS# VHER HE ANNIKED THENEG HE SERDS IRMONWATIOR TO THE NEST OM THE LECIORSG ARD CATHENS ALL HIS ANWY IRTO ORE PLAUE BEMONE IRTELLICERUE OM HIS ANNIKAL UOFLD BE ARROFRUED TO THE ANKENRI# KENUIRCETONIXG OR HEANIRC THIS UINUFWSTARUEG LEADS BAU# HIS ANWY IRTO THE UOFRTNY OM THE BITFNICES# ARD AMTEN WANUHIRC MNOW IT TO CENCOKIAG A TOVR OM THE BOIIG VHOW UAESAN HAD SETTLED THENE AMTEN DEMEATIRC THEW IR THE HELKETIAR VANG ARD HAD NERDENED TNIBFTANY TO THE AEDFIG HE DETENWIRED TO ATTAU# IT#</em></p>
+
+<h3>Iteration 4</h3>
+
+<p>i guess:</p>
+
+<p>HIWSELM -&gt; himself<br>
+HE CIKES HIW -&gt; HE LIKES HIM</p>
+
+<p>yielding<br>
+W&lt;-&gt;M<br>
+C&lt;-&gt;L</p>
+
+<p><em>UAESANG HAKIRL DECAYED TVO DAYS IR THAT PCAUEG BEUAFSE HE HAD ARTIUIPATED THATG IR THE RATFNAC UOFNSE OW EKERTSG SFUH VOFCD BE THE UORDFUT OW KENUIRLETONIXG CEAKES THE ANMY FRDEN PNETERSE OW NAISIRL NEUNFITS ARD UAKACNY# HE PCAUES BNFTFSG A YOFRL MARG IR UOMMARD OW THESE WONUES# HE LIKES HIM IRSTNFUTIORS THAT THE UAKACNY SHOFCD NARLE AS EXTERSIKECY AS POSSIBCE IR ACC DINEUTIORS# THAT HE VOFCD EXENT HIMSECW ROT TO BE ABSERT WNOM THE UAMP CORLEN THAR THNEE DAYS# HAKIRL ANNARLED THESE MATTENSG HE MANUHES TO KIERRA BY AS CORL #OFNREYS AS HE UARG VHER HIS OVR SOCDIENS DID ROT EXPEUT HIM# WIRDIRL THENE A WNESH BODY OW UAKACNYG VHIUH HE HAD SERT OR TO THAT PCAUE SEKENAC DAYS BEWONEG MANUHIRL IRUESSARTCY RILHT ARD DAYG HE ADKARUED NAPIDCY THNOFLH THE TENNITONY OW THE AEDFI IRTO THAT OW THE CIRLORESG IR VHIUH TVO CELIORS VENE VIRTENIRLG THATG IW ARY PCAR AWWEUTIRL HIS OVR SAWETY SHOFCD HAKE BEER ONLARI#ED BY THE AEDFIG HE MILHT DEWEAT IT BY THE NAPIDITY OW HIS MOKEMERTS# VHER HE ANNIKED THENEG HE SERDS IRWONMATIOR TO THE NEST OW THE CELIORSG ARD LATHENS ACC HIS ANMY IRTO ORE PCAUE BEWONE IRTECCILERUE OW HIS ANNIKAC UOFCD BE ARROFRUED TO THE ANKENRI# KENUIRLETONIXG OR HEANIRL THIS UINUFMSTARUEG CEADS BAU# HIS ANMY IRTO THE UOFRTNY OW THE BITFNILES# ARD AWTEN MANUHIRL WNOM IT TO LENLOKIAG A TOVR OW THE BOIIG VHOM UAESAN HAD SETTCED THENE AWTEN DEWEATIRL THEM IR THE HECKETIAR VANG ARD HAD NERDENED TNIBFTANY TO THE AEDFIG HE DETENMIRED TO ATTAU# IT#</em></p>
+
+<h3>Iteration 5</h3>
+
+<p>i guess:</p>
+
+<p>ARD -&gt; AND</p>
+
+<p>yielding:</p>
+
+<p>R &lt;-&gt; N  </p>
+
+<h3>Iteration 6</h3>
+
+<p>THE ARMY FNDER PRETENSE OW -&gt; The army under pretense of<br>
+UAESAR HAD SETTCED THERE AWTER DEWEATINL -&gt; Caesar had settled there after defeating</p>
+
+<p>F -&gt; U<br>
+U -&gt; C<br>
+C -&gt; L<br>
+L -&gt; G<br>
+W -&gt; F<br>
+G -&gt; W</p>
+
+<p><em>CAESARW HAKING DELAYED TVO DAYS IN THAT PLACEW BECAUSE HE HAD ANTICIPATED THATW IN THE NATURAL COURSE OF EKENTSW SUCH VOULD BE THE CONDUCT OF KERCINGETORIXW LEAKES THE ARMY UNDER PRETENSE OF RAISING RECRUITS AND CAKALRY# HE PLACES BRUTUSW A YOUNG MANW IN COMMAND OF THESE FORCES# HE GIKES HIM INSTRUCTIONS THAT THE CAKALRY SHOULD RANGE AS EXTENSIKELY AS POSSIBLE IN ALL DIRECTIONS# THAT HE VOULD EXERT HIMSELF NOT TO BE ABSENT FROM THE CAMP LONGER THAN THREE DAYS# HAKING ARRANGED THESE MATTERSW HE MARCHES TO KIENNA BY AS LONG #OURNEYS AS HE CANW VHEN HIS OVN SOLDIERS DID NOT EXPECT HIM# FINDING THERE A FRESH BODY OF CAKALRYW VHICH HE HAD SENT ON TO THAT PLACE SEKERAL DAYS BEFOREW MARCHING INCESSANTLY NIGHT AND DAYW HE ADKANCED RAPIDLY THROUGH THE TERRITORY OF THE AEDUI INTO THAT OF THE LINGONESW IN VHICH TVO LEGIONS VERE VINTERINGW THATW IF ANY PLAN AFFECTING HIS OVN SAFETY SHOULD HAKE BEEN ORGANI#ED BY THE AEDUIW HE MIGHT DEFEAT IT BY THE RAPIDITY OF HIS MOKEMENTS# VHEN HE ARRIKED THEREW HE SENDS INFORMATION TO THE REST OF THE LEGIONSW AND GATHERS ALL HIS ARMY INTO ONE PLACE BEFORE INTELLIGENCE OF HIS ARRIKAL COULD BE ANNOUNCED TO THE ARKERNI# KERCINGETORIXW ON HEARING THIS CIRCUMSTANCEW LEADS BAC# HIS ARMY INTO THE COUNTRY OF THE BITURIGES# AND AFTER MARCHING FROM IT TO GERGOKIAW A TOVN OF THE BOIIW VHOM CAESAR HAD SETTLED THERE AFTER DEFEATING THEM IN THE HELKETIAN VARW AND HAD RENDERED TRIBUTARY TO THE AEDUIW HE DETERMINED TO ATTAC# IT#</em></p>
+
+<h3>Iteration 7</h3>
+
+<p>CAKALRY -&gt; CAVALARY<br>
+GIKES -&gt; GIVES<br>
+HAKING -&gt; HAVING</p>
+
+<p>K -&gt; V</p>
+
+<h3>Iteration 8</h3>
+
+<p>VOULD -&gt; WOULD</p>
+
+<p>V -&gt; W<br>
+W-&gt;,</p>
+
+<p>EKENTSW -&gt; EVENTS</p>
+
+<p><em>CAESAR, HAVING DELAYED TWO DAYS IN THAT PLACE, BECAUSE HE HAD ANTICIPATED THAT, IN THE NATURAL COURSE OF EVENTS, SUCH WOULD BE THE CONDUCT OF VERCINGETORIX, LEAVES THE ARMY UNDER PRETENSE OF RAISING RECRUITS AND CAVALRY# HE PLACES BRUTUS, A YOUNG MAN, IN COMMAND OF THESE FORCES# HE GIVES HIM INSTRUCTIONS THAT THE CAVALRY SHOULD RANGE AS EXTENSIVELY AS POSSIBLE IN ALL DIRECTIONS# THAT HE WOULD EXERT HIMSELF NOT TO BE ABSENT FROM THE CAMP LONGER THAN THREE DAYS# HAVING ARRANGED THESE MATTERS, HE MARCHES TO VIENNA BY AS LONG #OURNEYS AS HE CAN, WHEN HIS OWN SOLDIERS DID NOT EXPECT HIM# FINDING THERE A FRESH BODY OF CAVALRY, WHICH HE HAD SENT ON TO THAT PLACE SEVERAL DAYS BEFORE, MARCHING INCESSANTLY NIGHT AND DAY, HE ADVANCED RAPIDLY THROUGH THE TERRITORY OF THE AEDUI INTO THAT OF THE LINGONES, IN WHICH TWO LEGIONS WERE WINTERING, THAT, IF ANY PLAN AFFECTING HIS OWN SAFETY SHOULD HAVE BEEN ORGANI#ED BY THE AEDUI, HE MIGHT DEFEAT IT BY THE RAPIDITY OF HIS MOVEMENTS# WHEN HE ARRIVED THERE, HE SENDS INFORMATION TO THE REST OF THE LEGIONS, AND GATHERS ALL HIS ARMY INTO ONE PLACE BEFORE INTELLIGENCE OF HIS ARRIVAL COULD BE ANNOUNCED TO THE ARVERNI# VERCINGETORIX, ON HEARING THIS CIRCUMSTANCE, LEADS BAC# HIS ARMY INTO THE COUNTRY OF THE BITURIGES# AND AFTER MARCHING FROM IT TO GERGOVIA, A TOWN OF THE BOII, WHOM CAESAR HAD SETTLED THERE AFTER DEFEATING THEM IN THE HELVETIAN WAR, AND HAD RENDERED TRIBUTARY TO THE AEDUI, HE DETERMINED TO ATTAC# IT#</em></p>
+
+<h3>Iteration 9</h3>
+
+<p>.,:; map to themselves
+j -&gt; K</p>
+
+<p>CAESAR, HAVING DELAYED TWO DAYS IN THAT PLACE, BECAUSE HE HAD ANTICIPATED THAT, IN THE NATURAL COURSE OF EVENTS, SUCH WOULD BE THE CONDUCT OF VERCINGETORIX, LEAVES THE ARMY UNDER PRETENSE OF RAISING RECRUITS AND CAVALRY: HE PLACES BRUTUS, A YOUNG MAN, IN COMMAND OF THESE FORCES; HE GIVES HIM INSTRUCTIONS THAT THE CAVALRY SHOULD RANGE AS EXTENSIVELY AS POSSIBLE IN ALL DIRECTIONS; THAT HE WOULD EXERT HIMSELF NOT TO BE ABSENT FROM THE CAMP LONGER THAN THREE DAYS. HAVING ARRANGED THESE MATTERS, HE MARCHES TO VIENNA BY AS LONG #OURNEYS AS HE CAN, WHEN HIS OWN SOLDIERS DID NOT EXPECT HIM. FINDING THERE A FRESH BODY OF CAVALRY, WHICH HE HAD SENT ON TO THAT PLACE SEVERAL DAYS BEFORE, MARCHING INCESSANTLY NIGHT AND DAY, HE ADVANCED RAPIDLY THROUGH THE TERRITORY OF THE AEDUI INTO THAT OF THE LINGONES, IN WHICH TWO LEGIONS WERE WINTERING, THAT, IF ANY PLAN AFFECTING HIS OWN SAFETY SHOULD HAVE BEEN ORGANI#ED BY THE AEDUI, HE MIGHT DEFEAT IT BY THE RAPIDITY OF HIS MOVEMENTS. WHEN HE ARRIVED THERE, HE SENDS INFORMATION TO THE REST OF THE LEGIONS, AND GATHERS ALL HIS ARMY INTO ONE PLACE BEFORE INTELLIGENCE OF HIS ARRIVAL COULD BE ANNOUNCED TO THE ARVERNI. VERCINGETORIX, ON HEARING THIS CIRCUMSTANCE, LEADS BACK HIS ARMY INTO THE COUNTRY OF THE BITURIGES; AND AFTER MARCHING FROM IT TO GERGOVIA, A TOWN OF THE BOII, WHOM CAESAR HAD SETTLED THERE AFTER DEFEATING THEM IN THE HELVETIAN WAR, AND HAD RENDERED TRIBUTARY TO THE AEDUI, HE DETERMINED TO ATTACK IT.</p>
+
+<p>Done - 9 iterations</p>
+
+<h1>About the cypher  </h1>
+
+<p>i couldn't find a simple <em>key</em> that would allow me to create the transformation<br>
+table. So i would have to provide the whole table to someone, who wanted to<br>
+decrypt messages.</p>
+
+<p>I would descripe the cypher as a <strong>simple substitution cipher</strong> where the<br>
+following table is the <em>key</em>:</p>
+
+<pre><code class="perl">%map = (
+&quot; &quot; =&gt; &quot; &quot;,
+&quot;a&quot; =&gt; &quot;E&quot;,
+&quot;o&quot; =&gt; &quot;T&quot;,
+&quot;l&quot; =&gt; &quot;A&quot;,
+&quot;f&quot; =&gt; &quot;N&quot;,
+&quot;i&quot; =&gt; &quot;I&quot;,
+&quot;y&quot; =&gt; &quot;H&quot;,
+&quot;x&quot; =&gt; &quot;R&quot;,
+&quot;c&quot; =&gt; &quot;O&quot;,
+&quot;m&quot; =&gt; &quot;S&quot;,
+&quot;s&quot; =&gt; &quot;D&quot;,
+&quot;r&quot; =&gt; &quot;C&quot;,
+&quot;g&quot; =&gt; &quot;L&quot;,
+&quot;t&quot; =&gt; &quot;G&quot;,
+&quot;e&quot; =&gt; &quot;F&quot;,
+&quot;h&quot; =&gt; &quot;U&quot;,
+&quot;v&quot; =&gt; &quot;Y&quot;,
+&quot;d&quot; =&gt; &quot;M&quot;,
+&quot;,&quot; =&gt; &quot;,&quot;,
+&quot;n&quot; =&gt; &quot;V&quot;,
+&quot;k&quot; =&gt; &quot;B&quot;,
+&quot;q&quot; =&gt; &quot;W&quot;,
+&quot;b&quot; =&gt; &quot;P&quot;,
+&quot;w&quot; =&gt; &quot;X&quot;, 
+&quot;j&quot; =&gt; &quot;K&quot;,
+&quot;.&quot; =&gt; &quot;.&quot;,
+&quot;:&quot; =&gt; &quot;:&quot;,
+&quot;;&quot; =&gt; &quot;;&quot;);
+</code></pre>
+
+<p>Each imput symbol <em>s</em> from the message is mapped to a single symbol <em>c(s)</em> in<br>
+the cyphered message. The mapping is fixed - the function described by the map<br>
+is bijective.</p>
+</div></body></html>
