@@ -1,0 +1,44 @@
+/* EBNF Form */
+Program: { Funcdef ’;’ }  
+       ;  
+ 
+Funcdef: id ’(’ Pars ’)’ Stats end  /* Funktionsdefinition */  
+       ;  
+ 
+Pars: { id ’,’ } [ id ]             /* Parameterdefinition */  
+    ;  
+ 
+Stats: { { Labeldef } Stat ’;’ }  
+     ;  
+ 
+Labeldef: id ’:’                    /* Labeldefinition */  
+        ;  
+ 
+Stat: return Expr  
+    | goto id  
+    | if Expr then Stats end  
+    | var id ’=’ Expr               /* Variablendefinition */  
+    | Lexpr ’=’ Expr                /* Zuweisung */  
+    | Term  
+    ;  
+ 
+Lexpr: id        /* schreibender Variablenzugriff */  
+     | ’*’ Unary /* schreibender Speicherzugriff */  
+     ;  
+ 
+Expr: Unary  
+    | Term { ’+’ Term }  
+    | Term { ’*’ Term }  
+    | Term { and Term }  
+    | Term ( ’=<’ | ’#’ ) Term  
+    ;  
+ 
+Unary: { not | ’-’ } Unary  
+     | ’*’ Unary   /* lesender Speicherzugriff */  
+     | Term  
+     ;  
+ 
+Term: ’(’ Expr ’)’  
+    | num  
+    | id                               /* Variablenverwendung */  
+    | id ’(’ { Expr ’,’ } [ Expr ] ’)’ /* Funktionsaufruf */
