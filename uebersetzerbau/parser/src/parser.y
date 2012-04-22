@@ -16,9 +16,9 @@
 
 
 Program: 
-	Funcdef ";"
+ 	| Funcdef ";"
 	| Program Funcdef ";"
-	| \epsilon
+//	| \epsilon
 	;
 
 Funcdef: 																/* Funktionsdefinition */ 
@@ -27,8 +27,8 @@ Funcdef: 																/* Funktionsdefinition */
 
 /* Allows Parameters to end in a semicolon */
 Pars:																		/* Parameterdefinition */  
-	ParsS
-	| \epsilon
+	| ParsS
+//	| \epsilon
 	;
 
 ParsS:
@@ -53,7 +53,7 @@ LabeldefS:															/* Labeldefinition */
 	
 /* Kontrollieren */	
 Stat: 
-	return Expr
+	T_RETURN Expr
 	| T_GOTO T_ID
 	| T_IF Expr T_THEN Stats T_END
 	| T_VAR T_ID "=" Expr											/* Variablendefinition */  
@@ -76,7 +76,7 @@ Expr:
 	;
 	
 PlusTerm:
-	PlustTerm "*" Term
+	PlusTerm "*" Term
 	| Term
 	;
 	
@@ -103,8 +103,8 @@ Term:
 	| T_ID																	/* Variablenverwendung */  
 	| T_ID "(" Subterm ")" 									/* Funktionsaufruf */  
 
-Suberm: 
-	\epsilon
+Subterm: 
+//	\epsilon
 	| Expr ","
 	| SubtermS
 	| SubtermS ","

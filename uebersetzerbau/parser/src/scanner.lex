@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "parser.h"
+
 %}
 
 
@@ -42,8 +44,8 @@ and {printf("%s\n",yytext);return T_AND;};
 
 {identifier}		{printf("ident %s\n",yytext); return T_ID;}
 
-{decimal}		{yyval=str_to_num(DECIMAL,yytext);printf("num %lu\n", yyval);return T_NUM;};
-{hexadecimal}		{yylval=str_to_num(HEXADECIMAL,yytext);printf("num %lu\n", yyval);return T_NUM}:
+{decimal}		{yylval=str_to_num(DECIMAL,yytext);printf("num %lu\n", yylval);return T_NUM;};
+{hexadecimal}		{yylval=str_to_num(HEXADECIMAL,yytext);printf("num %lu\n", yylval);return T_NUM;};
 
 {whitespace}+		;
 .+			{
