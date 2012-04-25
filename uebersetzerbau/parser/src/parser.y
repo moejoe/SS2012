@@ -14,74 +14,71 @@
 
 %%
 
+Optcomma:
+	| ','
+	;
 
 Program: 
- 	| Funcdef ";"
-	| Program Funcdef ";"
-//	| \epsilon
+ 	| Funcdef ';' Program
 	;
 
 Funcdef: 																/* Funktionsdefinition */ 
-	T_ID "(" Pars ")" Stats T_END 
+	T_ID '(' Pars ')' Stats T_END 
 	;
 
 /* Allows Parameters to end in a semicolon */
 Pars:																		/* Parameterdefinition */  
 	| ParsS
-//	| \epsilon
 	;
 
 ParsS:
-	ParsS T_ID ","
-	| T_ID
-	| T_ID ","
+	T_ID Optcomma
+	| T_ID ',' ParsS
 	;
 	
-/* Must end in a semicolon! */
+
 Stats:
-	Stats Stat ";"
-	| Stats LabeldefS Stat ";"
-	| Stat ";"
-	| LabeldefS Stat ";"
+	| Stats Stat ';'
+	| Stats LabeldefS Stat ';'
 	;
 	
 /* LabeldefS = { Labeldef }+ */
 
 LabeldefS:															/* Labeldefinition */  
-	T_ID ":"
-	| LabeldefS T_ID ":" 
+	T_ID ':'
+	| LabeldefS T_ID ':' 
 	
 /* Kontrollieren */	
 Stat: 
 	T_RETURN Expr
 	| T_GOTO T_ID
 	| T_IF Expr T_THEN Stats T_END
-	| T_VAR T_ID "=" Expr											/* Variablendefinition */  
-	| Lexpr "=" Expr											/* Zuweisung */  
+	| T_VAR T_ID '=' Expr											/* Variablendefinition */  
+	| Lexpr '=' Expr											/* Zuweisung */  
 	| Term
 	;
 	
 Lexpr: 
 	T_ID																		/* schreibender Variablenzugriff */  
-	| "*" Unary														/* schreibT_ENDer Speicherzugriff */
+	| '*' Unary														/* schreibT_ENDer Speicherzugriff */
 	; 
 	
 Expr:
 	Unary
-	| PlusTerm
-	| MultTerm
-	| AndTerm
+	| Term '+' PlusTerm
+	| Term '*' MultTerm
+	| Term T_AND AndTerm
 	| Term T_LE Term
-	| Term "#" Term
+	| Term '#' Term
 	;
 	
 PlusTerm:
-	PlusTerm "*" Term
+	PlusTerm '+' Term
 	| Term
 	;
 	
 MultTerm:
-	MultTerm "*" Term
+	MultTerm '*' Term
 	| Term 
 	;
 AndTerm:
@@ -92,25 +89,22 @@ AndTerm:
 	
 Unary:
 	T_NOT Unary
-	| "-" Unary
-	| "*" Unary														/* lesender Speicherzugriff */
+	| '-' Unary
+	| '*' Unary														/* lesender Speicherzugriff */
 	| Term
 	;
 
 Term: 
-	"(" Expr ")"
+	'(' Expr ')'
 	| T_NUM
 	| T_ID																	/* Variablenverwendung */  
-	| T_ID "(" Subterm ")" 									/* Funktionsaufruf */  
+	| T_ID '(' Subterm ')' 									/* Funktionsaufruf */  
 
 Subterm: 
-//	\epsilon
-	| Expr ","
-	| SubtermS
-	| SubtermS ","
+	| SubtermS Optcomma 
 	;
 SubtermS:
-	SubtermS "," Expr
+	SubtermS ',' Expr
 	| Expr
 	;
 	

@@ -40,18 +40,18 @@ not	{printf("%s\n",yytext);return T_NOT;};
 and {printf("%s\n",yytext);return T_AND;};
 
 "=<" {printf("%s\n",yytext);return T_LE;};
-{lexeme}		{	printf("%s\n",yytext);return (int) yytext[0];}
+{lexeme}		{printf("%s\n",yytext);return (int) yytext[0];};
 
-{identifier}		{printf("ident %s\n",yytext); return T_ID;}
+{identifier}		{printf("ident %s\n",yytext); return T_ID;};
 
 {decimal}		{yylval=str_to_num(DECIMAL,yytext);printf("num %lu\n", yylval);return T_NUM;};
 {hexadecimal}		{yylval=str_to_num(HEXADECIMAL,yytext);printf("num %lu\n", yylval);return T_NUM;};
 
 {whitespace}+		;
-.+			{
+.			{
 				printf("ERROR: unrecognized token: %s\n", yytext);
 				exit(1);
-			}
+			};
 
 %%
 /*** C-Code section ***/
