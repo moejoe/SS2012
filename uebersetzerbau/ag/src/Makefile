@@ -1,9 +1,10 @@
 CC	= /usr/bin/gcc
-CFLAGS  =  -pedantic -ansi -Wall -g
+#CFLAGS  =  -pedantic  -Wall -g
+CFLAG	= -Wall -g
 LDFLAGS = 
 OUTDIR	= ~/abgabe/ag
 
-all: symtab.o test
+all: symtab-test
 
 # Erzeugt die Abgabe
 abgabe: 
@@ -17,12 +18,12 @@ vutest: abgabe
 
 # Meine Tests
 symtab-test: symtab.o test_symtab.o
-	$(CC) $(CFLAGS) -o symtab-test symtab.o $(LDFLAGS)
+	$(CC) $(CFLAGS) -o symtab-test test_symtab.o symtab.o $(LDFLAGS)
 	
 %.o: %.s
 	$(CC) -c $<	
 
 clean: 
-	rm -rf $(OBJ) $(OUTDIR)/*.o
+	rm -rf *.o symtab-test 
 
 .PHONY: clean
