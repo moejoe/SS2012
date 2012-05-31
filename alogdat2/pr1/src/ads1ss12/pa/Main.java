@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
 
+
 /**
  * Diese Klasse enth&auml;lt nur die {@link #main main()}-Methode zum Starten
  * des Programms, sowie {@link #printDebug(String)} und
@@ -190,7 +191,7 @@ public class Main {
 		long start = System.currentTimeMillis();
 		long end = System.currentTimeMillis();
 		long offs = end - start;
-		long timeout = 30000; // 30 seconds
+		long timeout = 3000; // 30 seconds
 
 		chopFileName();
 

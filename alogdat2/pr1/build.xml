@@ -1,0 +1,32 @@
+<project name="ads1ss12" basedir="." default="run">
+	
+	<property name="src.dir"     value="src"/>
+	<property name="build.dir"   value="build"/>
+	<property name="classes.dir" value="${build.dir}/classes"/>
+
+	<property name="main-class"  value="ads1ss12.pa.Main"/>
+	<property name="test-file"  value="tests/input/0000"/>
+	
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+
+  	<target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+    </target>
+
+
+    <target name="run" depends="compile">
+        <java classname="${main-class}" fork="true">
+			<arg value = "-t" />
+        	<arg value = "-d" />
+			<arg path="${test-file}"/>
+		    <classpath>
+		      <pathelement path="${classes.dir}/"/>
+			</classpath>
+		</java>
+    </target>
+</project>
