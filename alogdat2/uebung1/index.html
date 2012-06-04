@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de"> <!--<![endif]-->
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="description" content="Übung1 Algodat2 SS2012" />
+		<meta name="keywords" content="Algodat2, Übung, TUWien" />
+		<meta name="author" content="Moritz Haslhofer (e0025125)" />
+		
+		<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	  	<meta name="viewport" content="width=device-width">
+	
+	
+		<title>Algorithmen und Datenstrukturen 2 Übung 1 (SS2012)</title>		
+		
+		<link rel="stylesheet" href="./css/master.css" type="text/css" media="screen" title="master" charset="utf-8">
+		<link rel="stylesheet" href="./css/html5_bp.css" media="screen">
+		<link rel="stylesheet" href="./css/print.css" media="print">
+
+
+		
+		<!-- MathJax Configuration -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<!-- End MathJax Configuration -->
+		
+	</head>
+	<body id="index" onload="">
+		<header>
+			<h1>Algorithmen und Datenstrukturen 2 (SS2012)</h1>
+			<h2 id="author">Moritz Haslhofer (e0025125)</h2>
+			<h2 id="create-date"><time pubdate datetime="2012-06-03">2012-06-03</time></h2>
+		</header>
+		<article class="exercise" id="uebung1">
+			<h1>&Uuml;bung1</h1>
+			<h2 id="author">Moritz Haslhofer (e0025125)</h2>
+			<h2 id="create-date"><time pubdate datetime="2012-06-03">2012-06-03</time></h2>
+			
+			<article class="assignment" id="aufgabe1" >
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+					<H2>Approximative Algorithmen:</H2>
+					<ol class="alpha">
+						<li>Was bedeutet es, wenn ein algorithmus $A$ für ein 
+							<em>Maximierungsproblem</em> Gütegarantie $\epsilon$ besitzt?
+						</li>
+						<li>Was bedeutet es, wenn ein algorithmus $A$ für ein 
+							<em>Minimierungsproblem</em> Gütegarantie $\epsilon$ besitzt?
+						</li>
+					</ol>
+				</section>
+				<section class="solution">
+					<H1></H1>
+					
+					Sei $c_{A}(P)$ die Lösung des Algorithmus $A$ für die Probleminstanz 
+					$P \in \Pi$.<br/>
+					Weiters sei $c_{opt}(P)$ der optimale Wert für $P$.
+
+					<ol class="alpha">
+						<li>Falls $A$ ein Maximierungsproblem löst und: $\frac{c_{A}(P)}{c_{opt}(P)} \le \epsilon$ ($ \forall P \in \Pi, \exists \epsilon > 0 $)
+							dann ist $A$ ein $\epsilon$-approximativer Algorithmus, und $\epsilon$ die Gütegarantie von $A$
+						</li>
+						<li>Analog dazu, wenn $A$ ein Minimierungsproblem löst und $\frac{c_{A}(P)}{c_{opt}(P)} \ge \epsilon$ ($ \forall P \in \Pi, \exists \epsilon > 0 $)
+							dann ist $A$ ein $\epsilon$-approximativer Algorithmus, und $\epsilon$ die Gütegarantie von $A$
+						</li>
+					</ol>
+				</section>
+			</article>
+			<div class="page-break"></div>
+			<article class="assignment" id="aufgabe2">
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+					<h2>Das symmetrische Traveling Salesman Problem:</h2>
+					<p>Angenommen die Distanzwerte zwischen den Knoten im TSP sind alle paarweise ver- schieden, 
+						ist die mittels der Christophides-Heuristik erzeugte Lösung immer eindeutig? </p>
+					<p> Begründen Sie Ihre Antwort!</p>
+				</section>
+				<section class="solution">
+					<H1></H1>
+					Die einzelnen Schritte analysiert
+					<ol>
+						<li> <b>MST</b> - ist eindeutig
+						<li> <b>min. Perfect Match</b> - muss nicht eindeutig sein
+						<li> <b>MST U PF</b> - muss nicht endeutig sein (aus 2)
+					</ol>
+					Aus zwei unterschiedlichen minimal perfect matches können unterschiedliche Graphen entstehen.
+					Daher liefert die Heuristik keine eindeutige Lösung.
+				</section>
+			</article>
+
+			<article class="assignment" id="aufgabe3">
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+					Gegeben ist die Nearest-Neighbor-Heuristik (NN) für das symmetrische TSP:
+					<ol class="alpha">
+						<li> Starte von einem beliebigen Knoten $s$ und markiere ihn als besucht.
+						<li> Finde die kürzeste Kante zu einem unbesuchten, adjanzenten Knoten $v$.
+						<li> Wenn alle Knoten besucht sind, kehre zum Anfangsknoten zurück und terminiere
+						<li> Setze $v$ als aktuellen Knoten, mariere ihn als besucht und gehe zu (2).
+							
+						Geben Sie die Laufzeit der NN-Heuristik in $\Sigma$ - Notation an. Welche 
+						Approximationsgüte besitzt die NN-Heuristik?
+					</ol>
+				</section>
+				<section class="solution">
+					<H1></H1>
+					Die Laufzeit ist durch $\Theta(|V|^2)$ nach oben beschränkt.
+					Die Heuristik hat keine beerechenbare Approximationsgüte, da sich für jedes Problem $P$
+					mit $\epsilon$ ein Problem $P'$ konstruieren lässt mit $\epsilon' > \epsilon$.
+				</section>
+			</article>
+			
+			<article class="assignment" id="aufgabe4">
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+					Betrachten Sie den Branch-and-Bound-Algorithmus für das asymmetrische Traveling-Salesman-Problem 
+					aus dem Skriptum bzw. der Vorlesung und die folgende Distanzmatrix:
+					$$ D = \begin{pmatrix}
+						\infty & 7 & 3 & 2 \\
+						4 & \infty & 3 & 5 \\
+						8 & 3 & \infty & 2 \\
+						5 & 2 & 3 & \infty
+						\end{pmatrix}	
+					$$
+					
+					<ol>
+						<li>Führen Sie zuerst Zeilen- und danach Spaltenreduktion durch. Geben Sie die vollständige resultierende 
+							Matrix nach beiden Schritten an. Welche untere Schranke L für die Tourlänge können Sie aus den
+							 Reduktionen ableiten?
+						<li>Zeichnen Sie den Nulldigraphen nach den obigen Reduktionen. Welche Schlussfolge- rung können Sie aus
+							 diesem Nulldigraphen ziehen?
+				</section>
+				<section class="solution">
+					<H1></H1>
+					<ol>
+						<li> Zeilenreduktion: 
+							$$ D = \begin{pmatrix}
+								\infty & 5 & 1 & 0 \\
+								1 & \infty & 0 & 2 \\
+								6 & 1 & \infty & 0 \\
+								3 & 0 & 1 & \infty
+								\end{pmatrix}	
+							$$
+							$$L=2+3+2+2 =9$$
+						Spaltenreduktion:
+							$$ D = \begin{pmatrix}
+								\infty & 5 & 1 & 0 \\
+								0 & \infty & 0 & 2 \\
+								5 & 1 & \infty & 0 \\
+								2 & 0 & 1 & \infty
+								\end{pmatrix}	
+							$$
+							$$L=9 + 1+0+0+0 = 10$$
+						<li>
+							Nulldigraph:
+							<div class="figure"> <img src="./img/aufgabe4/nulldigraph.png"/>
+								<p>Nulldigraph zu reduziertem $D$</p>
+							</div>
+						
+				</section>
+			</article>
+			
+			<article class="assignment" id="aufgabe5">
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+					Setzen Sie den Branch-and-Bound-Algorithmus aus der vorigen Aufgabe fort.
+					<ol class="alpha">
+						<li> Führen Sie den Branching-Schritt aus. Wählen Sie Kante (3,4) zum Definieren 
+							der neuen Teilprobleme. Geben Sie die Matrizen der neuen Teilprobleme an.
+						<li> Führen Sie auf den Matrizen der neuen Teilprobleme wiederum Zeilen- und 
+							Spaltenreduktion durch und geben Sie die resultierenden Matrizen an. Nennen Sie 
+							die neuen unteren Schranken für die Tourlänge.
+						<li>Zeichnen Sie für beide Teilprobleme den Nulldigraphen nach den obigen 
+							Reduktionen. Welche Schlussfolgerungen können Sie aus diesen Nulldigraphen 
+							ziehen?
+					</ol>
+				</section>
+				<section class="solution">
+					<H1></H1>
+					<ol class="alpha">
+						<li>
+							Wir schauen uns die beiden Unterprobleme:
+							$$ P = {(3,4)},{},{1,2,4},{1,2,3},D',10,\infty} $$
+							und:
+							$$ P = {},{(3,4)},{1,2,3,4},{1,2,3,4},D'',10,\infty} $$
+							an. Die Adjazentenmatrizen schauen wie folgt aus:
+							<div class="ffigures">
+								<div class="figure">
+									$$ D'= \begin{pmatrix}
+										\infty & 5 & 1  \\
+										0 & \infty & 0  \\
+										2 & 0 & \infty
+										\end{pmatrix}
+									$$ 
+									<p>$D'$ für erzwungene Kante (3,4)</p>
+								</div>
+								<div class="figure">
+									$$ D'' = \begin{pmatrix}
+										\infty & 5 & 1 & 0 \\
+										0 & \infty & 0 & 2 \\
+										5 & 1 & \infty & \infty \\
+										2 & 0 & 1 & \infty
+										\end{pmatrix}
+									$$	
+									<p>$D''$ für entfernte Kante (3,4)</p>
+								</div>
+								<br />
+							</div>
+							
+						<li>
+							<div class="ffigures">
+								<div class="figure">
+									$$ D'= \begin{pmatrix}
+										\infty & 4 & 0  \\
+										0 & \infty & 0  \\
+										2 & 0 & \infty
+										\end{pmatrix}
+									$$ 
+									$$ L = 10 + 1 = 11 $$
+									<p>D' reduziert</p>
+								</div>
+								<div class="figure">
+									$$ D'' = \begin{pmatrix}
+										\infty & 5 & 1 & 0 \\
+										0 & \infty & 0 & 2 \\
+										4 & 0 & \infty & \infty \\
+										2 & 0 & 1 & \infty
+										\end{pmatrix}
+									$$	
+										$$ L= 10 + 1 = 11$$
+									<p>D'' reduziert</p>
+								</div>
+								<br />
+							</div>
+						<li>
+							<div class="ffigures">
+								<div class="figure"> <img src="./img/aufgabe5/nulldigraph-1.png"/>
+									<p>Nulldigraph zu D'</p>
+								</div>
+								<div class="figure"><img src="./img/aufgabe5/nulldigraph-2.png"/>
+									<p>Nulldigraph zu D''</p>
+								</div>
+								<br />
+							</div>
+							
+				</section>
+			</article>
+			
+			<article class="assignment" id="aufgabe6">
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+				</section>
+				<section class="solution">
+					<H1></H1>
+				</section>
+			</article>
+			
+			<article class="assignment" id="aufgabe7">
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+				</section>
+				<section class="solution">
+					<H1></H1>
+				</section>
+			</article>
+			
+			<article class="assignment" id="aufgabe8">
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+					Überlegen Sie sich zum Euklidischen TSP ein Beispiel, in dem die Verbesserungsheuristik 2-OPT
+					eine Tour nicht weiter verbessern kann, obwohl diese noch nicht global optimal ist.
+				</section>
+				<section class="solution">
+					<H1></H1>
+					<div class="figure"> <img src="./img/aufgabe8/2-opt-resistant.png"/>
+						<p>2-opt "resistenter" Graph</p>
+					</div>
+				</section>
+			</article>
+			
+			<article class="assignment" id="aufgabe9">
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+					Gegeben ist der folgende vollständige, ungerichtete Graph $G$ von fünf Städten und den jeweiligen
+					Distanzen. Wenden Sie die Christophides-Heuristik an, um eine approximative Lösung für das 
+					Traveling-Salesman-Problem in diesem Graphen zu finden.
+					<div class="figure"> <img src="./img/aufgabe9/graph.png"/>
+						<p>Graph</p>
+					</div>
+					<ol class="alpha">
+						<li>Markieren Sie jene Kanten, die einen minimalen Baum $B$ aufspannen und geben Sie die Menge
+							$W$ der Knoten mit ungeraden Grad an.
+						<li>Geben Sie das perfekte Matching kleinsten Gewichts $M$ im von $W$ induzierten Untergraphen
+							von G an.
+						<li>Zeichnen Sie den Graphen $G_2$ mit den Kanten $B \cup M$.
+						<li>Bestimmen Sie eine Euler-Tour $F$ im Graphen $G_2$
+				</section>
+				<section class="solution">
+					<H1></H1>
+					<div class="ffigures">
+						<div class="figure"> <img src="./img/aufgabe9/mst.png" width="80%" height="80%" />
+							<p>Minimal Spanning Tree</p>
+						</div>
+						<div class="figure"> <img src="./img/aufgabe9/perfect_match.png"  width="80%" height="80%"/>
+							<p>Perfect Match</p>
+						</div>
+						<div class="figure"> <img src="./img/aufgabe9/mst_u_pm.png"  width="80%" height="80%"/>
+							<p>Minimal Spanning Tree + Perfect Match</p>
+						</div>
+						<div class="figure"> <img src="./img/aufgabe9/hamilton.png"  width="80%" height="80%"/>
+							<p>Hamilton</p>
+						</div>
+						<br/>
+					</div>
+				</section>
+			</article>
+			
+			<article class="assignment" id="aufgabe10">
+				<H1></H1>
+				<section class="specification">
+					<H1></H1>
+					Tabu-Suche: Die Wahl der Länge einer Tabu-Liste ist häufig kritisch. Was können die Probleme bei zu 
+					kurzer bzw. zu langer Tabu-Liste sein?
+				</section>
+				<section class="solution">
+					<H1></H1>
+					<p>Eine zu kleine Tabuliste führt zu Zyklen im Algorithmus -  ( der Algorithmus bleibt in einem lokalen 
+						Optimum hängen)</p>
+					<p>Eine zu grosse Tabuliste:</p>
+					<ul><li>verbraucht mehr Zeit bei der Prüfung, ob ein Wert in der Liste vorkommt
+						<li>beschränkt den Algorithmus zu stark, und führt ihn von einer Optimalen suche weg	
+					<ul>
+				</section>
+			</article>															
+		</article>
+					
+	</body>

@@ -1,0 +1,95 @@
+	// forced page breaks
+	.page-break	{ display:block; page-break-before:always; }
+
+  	* { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
+ 	a, a:visited { text-decoration: underline; }
+ 	a[href]:after { content: " (" attr(href) ")"; }
+ 	abbr[title]:after { content: " (" attr(title) ")"; }
+	.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+	pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+	thead { display: table-header-group; } /* h5bp.com/t */
+	tr, img { page-break-inside: avoid; }
+	img { max-width: 100% !important; }
+	
+	
+	/* Hide from both screenreaders and browsers: h5bp.com/u */
+	.hidden { display: none !important; visibility: hidden; }
+	
+	
+ 	@page {  
+   		margin:27mm 16mm 27mm 16mm;
+		 @top-left {
+		    content: "Cascading Style Sheets";
+		  }
+	}
+	
+  	p, h2, h3 { orphans: 3; widows: 3; }
+  	h2, h3 { page-break-after: avoid; }
+
+	
+	header{
+		display:none;
+	}
+	article.exercise{
+		counter-reset: assignment 0 figure 0;
+	}
+	article.exercise > h1{ text-align:center; font-size:1.4em;}
+	article.exercise > h2{ text-align:center; font-size:1.2em;}
+	article.exercise div.figure { 
+		counter-increment:figure;
+		text-align:center;
+	}
+	
+	/**
+	 * Figures
+	 */
+	div.figure {page-break-inside: avoid;}
+	div.figure > p{ font-size:0.8em; text-align:center;}
+	div.figure > p:before{ 
+		content: "Abb. " counter(figure) ": ";
+	}
+	div.ffigure{
+
+	}
+	div.ffigures > br{
+		clear:both;
+	}
+	div.ffigures > div.figure {
+		width:50%;
+		float:left;
+	}
+
+	/** 
+	 * Assignment 
+	 */
+	article.assignment {
+	}
+
+	article.assignment > section {
+		page-break-inside: avoid;
+	}
+
+	
+	article.assignment > h1{ 
+		page-break-before:always;
+		counter-increment: assignment;
+		font-size: 1.4em;
+	} 
+
+	article.assignment > h1:before{ 
+		content:"Aufgabe " counter(assignment) " ";
+	} 
+
+	article.assignment > section > h1{ 
+		font-size: 1.2em;
+	} 
+
+	article.assignment > section.specification > h1:before{ 
+		content:"Angabe ";
+	}
+
+	article.assignment > section.solution > h1:before{ 
+		content:"Lösung ";
+	}
+
+	article.assignment > section > h2{ display:inline; font-size: 1.0em;}

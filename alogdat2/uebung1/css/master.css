@@ -1,0 +1,70 @@
+body{ 
+	width:800px; 
+	margin:0px; 
+	padding:0px 10px 0px 10px; 
+	font-size:100%;
+	
+	counter-reset: figure;
+
+}
+/* printer friendly page breaks*/
+.page-break	{ display:none; }
+
+
+/* Header */
+header{border:0px; margin:0px; padding:10px; background: #eee;}
+header > h1{ font-size:1.2em;}
+header > h2{ font-size:1em; display:inline;}
+
+/* Exercise */
+article.exercise{
+	counter-reset: assignment;
+}
+article.exercise > h1{ text-align:center; font-size:1.6em;}
+article.exercise > h2{ text-align:center; font-size:1.2em;}
+article.exercise div.figure { 
+	counter-increment:figure;
+	text-align:center;
+}
+div.figure > p{ font-size:0.8em; text-align:center; }
+div.figure > p:before{ 
+	content: "Abb. " counter(figure) ": ";
+}
+div.ffigure{
+	
+}
+div.ffigures > br{
+	clear:both;
+}
+div.ffigures > div.figure {
+	width:50%;
+	float:left;
+}
+
+/* Assignment */
+article.assignment{
+	
+}
+article.assignment > h1{ 
+	counter-increment: assignment;
+	font-size: 1.6em;
+} 
+
+article.assignment > h1:before{ 
+	content:"Aufgabe " counter(assignment) " ";
+} 
+
+
+article.assignment > section > h1{ 
+	font-size: 1.2em;
+} 
+
+article.assignment > section.specification > h1:before{ 
+	content:"Angabe ";
+}
+
+article.assignment > section.solution > h1:before{ 
+	content:"Lösung ";
+}
+
+article.assignment > section > h2{ display:inline; font-size: 1.0em;} 
