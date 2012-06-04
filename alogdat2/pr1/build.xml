@@ -23,7 +23,7 @@
         <java classname="${main-class}" fork="true">
 			<arg value = "-t" />
         	<arg value = "-d" />
-			<arg path="${test-file}"/>
+			<arg path="${test-file}ant"/>
 		    <classpath>
 		      <pathelement path="${classes.dir}/"/>
 			</classpath>

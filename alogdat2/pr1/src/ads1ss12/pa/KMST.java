@@ -50,8 +50,9 @@ public class KMST extends AbstractKMST {
 		// initialize connectedNode list
 		for( int i=0; i< numNodes; i++ ) { connectedNodes[i] = 0; };
 		// Heuristik for an upper Bound
-		HashSet<Edge> sol = getHSolution(numNodes,numEdges,this.graph,k);
-		setSolution(calculateWeight(sol),sol);	
+//		HashSet<Edge> sol = getHSolution(numNodes,numEdges,this.graph,k);
+//		setSolution(calculateWeight(sol),sol);
+		
 	}
 
 	/**
@@ -66,14 +67,21 @@ public class KMST extends AbstractKMST {
 	@Override
 	public void run() {
 		recursion = 0;	
-		upperBound = getSolution().getUpperBound();
-		//Main.printDebug("Done after " + recursion + " iterations");
+		//upperBound = getSolution().getUpperBound();
 		curWeight = 0;
 		//_recAlgorithm( this.graph );
 		Edge clonedArrayList[] = new Edge[this.graph.size()];
 		this.graph.toArray(clonedArrayList);
-		_recAlgorithm(clonedArrayList,this.graph.size());
-		
+		int bestCase = 0;
+		for(int i=0; i < k -1; i++){
+			bestCase += clonedArrayList[i].weight;
+		}
+		upperBound = 0; 
+		for(int i = 1 ; i < k ; i++){
+			upperBound += clonedArrayList[graph.size()-i].weight;
+		}
+//		Main.printDebug("UpperBound starts at " + upperBound );
+		_recAlgorithm(clonedArrayList,this.graph.size(),bestCase);	
 //		Main.printDebug("Done after " + recursion + " iterations");
 	}
 	
@@ -101,7 +109,7 @@ public class KMST extends AbstractKMST {
 		return sol;
 	}
 	
-	private void _recAlgorithm( Edge[] canditates, int candidateCount ){
+	private void _recAlgorithm( Edge[] canditates, int candidateCount, int bestCase ){
 		recursion++;
 		int spaceLeft = k - ( 1 + tree.size() ); 
 		
@@ -116,19 +124,9 @@ public class KMST extends AbstractKMST {
 		for( int i = 0; i < candidateCount; i++ ){
 			Edge curCanditate = canditates[i];
 			
-			int bestCase = curWeight;
-			if( i >= spaceLeft ){
-				bestCase += curCanditate.weight;
-				for( int j = 0; j < spaceLeft - 1; j++ ) { bestCase += canditates[j].weight; };				
-			}
-			else {
-				for( int j = 0; j < spaceLeft; j++ ) { bestCase += canditates[j].weight; };
-			}
-			if( bestCase >= upperBound ) return;
-			
-			if( level == 0 || ( connectedNodes[curCanditate.node1] > 0 && connectedNodes[curCanditate.node2] == 0 )
+ 			if( level == 0 || ( connectedNodes[curCanditate.node1] > 0 && connectedNodes[curCanditate.node2] == 0 )
 					|| ( connectedNodes[curCanditate.node1] == 0 && connectedNodes[curCanditate.node2] > 0 ) ) {
-
+				
 				connectedNodes[curCanditate.node1]++;
 				connectedNodes[curCanditate.node2]++;
 				
@@ -138,102 +136,53 @@ public class KMST extends AbstractKMST {
 				System.arraycopy(canditates, i+1, canditates, i, candidateCount-i-1); 
 				candidateCount--;
 				i--;
+				
 				Edge clonedArrayList[] = new Edge[candidateCount];
 				System.arraycopy(canditates, 0, clonedArrayList, 0, candidateCount ); //clone Array
-				_recAlgorithm(clonedArrayList,candidateCount);
+				_recAlgorithm(clonedArrayList,candidateCount,bestCase);
 				
 				tree.remove(curCanditate);
 				curWeight -= curCanditate.weight;
 				connectedNodes[curCanditate.node1]--;
 				connectedNodes[curCanditate.node2]--;
+				
+				bestCase -= curCanditate.weight;
+				if( i + spaceLeft > candidateCount ) return;
+				if( i < spaceLeft -1 ){
+					bestCase += canditates[spaceLeft - 1].weight;
+				}
+				else{
+					bestCase += canditates[i+1].weight;
+				}
+				if( bestCase >= upperBound ) return;
 			}
 			else{
 				if( connectedNodes[curCanditate.node1] > 0 && connectedNodes[curCanditate.node2] > 0 ) {
 					System.arraycopy(canditates, i+1, canditates, i, candidateCount-i-1); 
 					candidateCount--;
 					i--;
+					bestCase -= curCanditate.weight;
+					if( i + spaceLeft > candidateCount ) return;
+					if( i < spaceLeft -1 ){
+						bestCase += canditates[spaceLeft - 1].weight;
+					}
+					else{
+						bestCase += canditates[i+1].weight;
+					}
+					if( bestCase >= upperBound ) return;
+				}
+				else{
+					if( i >= spaceLeft - 1 && i+1 < candidateCount ){
+						bestCase -= curCanditate.weight;
+						bestCase += canditates[i+1].weight;
+					}
+					if( bestCase >= upperBound ) return;
 				}
 			}
 		}
 		return;
-		
 	}
 	
-	private void _recAlgorithm( ArrayList<Edge> canditates ){
-		recursion++;
-		
-		int spaceLeft = k - ( 1 + tree.size() ); // Wieviel Kanten haben noch Platz
-	
-		/* Neue L&ouml;sung gefunden */
-		if( tree.size() == this.k-1 ){
-			HashSet<Edge> solution = new HashSet<Edge>(tree);
-			setSolution(calculateWeight(solution),solution);
-			upperBound = getSolution().getUpperBound();
-			return;
-		}
-		
-		for( int i = 0; i < canditates.size(); i++ ){
-			Edge curCanditate = canditates.get(i);
-			
-			int bestCase = curWeight;
-			if( i >= spaceLeft ){
-				bestCase += curCanditate.weight;
-				for( int j = 0; j < spaceLeft - 1; j++ ) { bestCase += canditates.get(j).weight; };				
-			}
-			else {
-				for( int j = 0; j < spaceLeft; j++ ) { bestCase += canditates.get(j).weight; };
-			}
-			if( bestCase >= upperBound ) return;
-			
-			if( tree.isEmpty() || ( connectedNodes[curCanditate.node1] > 0 && connectedNodes[curCanditate.node2] == 0 )
-					|| ( connectedNodes[curCanditate.node1] == 0 && connectedNodes[curCanditate.node2] > 0 ) ) {
-			
-				/* Wir haben eine passende Kante mit min. Knoten gefunden */
-				connectedNodes[curCanditate.node1]++;
-				connectedNodes[curCanditate.node2]++;
-				
-				tree.add(curCanditate);
-				curWeight += curCanditate.weight;
-				
-				/* Der neue Kanditat wird danach nicht mehr in der Liste sein
-				 * und daher muss der Index angepasst werden.
-				 */
-				canditates.remove(i--);
-				
-				ArrayList<Edge> clone = new ArrayList<Edge>(canditates);
-				_recAlgorithm(clone);
-				
-				
-				tree.remove(curCanditate);
-				curWeight -= curCanditate.weight;
-				connectedNodes[curCanditate.node1]--;
-				connectedNodes[curCanditate.node2]--;
-//
-				if( canditates.size() < spaceLeft ) return;
-//				
-//				bestCase = curWeight;
-//				for( int j = 0; j < spaceLeft; j++ ) { bestCase += canditates.get(j).weight; };
-//				
-//				if( bestCase >= upperBound ) return;
-//				
-//				_recAlgorithm(canditates);
-			}
-			else{
-				if( connectedNodes[curCanditate.node1] > 0 && connectedNodes[curCanditate.node2] > 0 ) {
-					canditates.remove(i--);
-					//Main.printDebug("optimized");
-				}
-			}
-		}
-	
-		
-		
-		return;
-	}
-	
-
-	
-
 	/**
 	 *  Gibt f&uuml;r eine Kante, und einen Graphen die Anzahl der 
 	 *  Verbindungsstellen zur&uuml;ck.
@@ -303,9 +252,6 @@ public class KMST extends AbstractKMST {
 			}	
 			
 			if (extendedTree == 0) {
-//				Main.printDebug("Could not extend Tree");
-//				Main.printDebug(tree);
-//				Main.printDebug(clonedEdges);
 				return false;
 			}
 		}
